@@ -13,11 +13,10 @@ namespace ProjectWebServiceWebApi.DAL
         public List<Log> listOfLogs;
         public List<Log> listOfNewLogs;
         object lockObj = new object();
-        object lockObjTwo = new object();
+        //object lockObjTwo = new object();
         string line;
         public LogRepository()
         {
-            
             listOfLogs = ReadFile();
             new Thread(() => UpdateLogList()).Start();
         }
@@ -64,11 +63,11 @@ namespace ProjectWebServiceWebApi.DAL
             return listOfLogs;
         }
 
-        public Log AddNewLines()
-        {
-            string[] ss = new string[8] { "20:20:20", "101010", "alert", "name", "department", "resident", "", "registered" };
-            return new Log(ss);
-        }
+        //public Log AddNewLines()
+        //{
+        //    string[] ss = new string[8] { "20:20:20", "101010", "alert", "name", "department", "resident", "", "registered" };
+        //    return new Log(ss);
+        //}
 
         public List<Log> ReadFile()
         {
