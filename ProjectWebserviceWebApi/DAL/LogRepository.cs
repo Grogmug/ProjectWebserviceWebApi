@@ -84,7 +84,6 @@ namespace ProjectWebServiceWebApi.DAL
                 output.Add(new Log(dataSeperated));
             }
             fileKopi.Close();
-            File.Delete(target);
             return output;
         }
     }
