@@ -13,7 +13,6 @@ namespace ProjectWebServiceWebApi.DAL
         public List<Log> listOfLogs;
         public List<Log> listOfNewLogs;
         object lockObj = new object();
-        //object lockObjTwo = new object();
         string line;
         public LogRepository()
         {
@@ -63,17 +62,18 @@ namespace ProjectWebServiceWebApi.DAL
             return listOfLogs;
         }
 
-        //public Log AddNewLines()
-        //{
-        //    string[] ss = new string[8] { "20:20:20", "101010", "alert", "name", "department", "resident", "", "registered" };
-        //    return new Log(ss);
-        //}
-
         public List<Log> ReadFile()
         {
             List<Log> output = new List<Log>();
+            //Der tages en kopi af filen, så den kan læses selvom den er åben i et andet program.
             string fileSource = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/logfil.txt";
             string target = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/logfil_kopi.txt";
+
+            //Checker om filen er der i forvejen. 
+            if (File.Exists(target))
+            {
+                File.Delete(target);
+            }
             File.Copy(fileSource, target);
 
             System.IO.StreamReader fileKopi = new System.IO.StreamReader(target);
